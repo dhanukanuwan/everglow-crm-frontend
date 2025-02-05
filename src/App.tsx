@@ -1,5 +1,11 @@
+import { useState } from 'react';
 import MetaTags from './partials/MetaTags';
 import './styles/main.scss';
+import Login from './templates/Login';
+import { Routes, Route } from 'react-router';
+import Dashboard from './templates/Dashboard';
+import NotFound from './templates/NotFound';
+
 
 const App = () => {
 
@@ -7,8 +13,11 @@ const App = () => {
 		<div className="everglow-crm-main">
 			<MetaTags />
 
-			<h1>Everglow CRM</h1>
-			<span className="icon-search"></span>
+			<Routes>
+				<Route index element={<Dashboard />} />
+				<Route path="login" element={<Login />} />
+				<Route path="*" element={<NotFound />} />
+			</Routes>
 		</div>
 	);
 
