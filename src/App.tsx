@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import MetaTags from './partials/MetaTags';
 import './styles/main.scss';
 import Login from './templates/Login';
