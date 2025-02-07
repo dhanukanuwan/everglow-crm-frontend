@@ -5,7 +5,6 @@ import { Routes, Route } from 'react-router';
 import Dashboard from './templates/Dashboard';
 import NotFound from './templates/NotFound';
 
-
 const App = () => {
 
 	return(

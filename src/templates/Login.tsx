@@ -1,8 +1,10 @@
-import { useState, FormEvent } from "react";
+import { useEffect, useState, FormEvent } from "react";
 import logo from "../images/logo.png";
-import { LoginFormValues } from "../features/lib/types";
+import { LoginFormValues, RootState, LoginCreds } from "../features/lib/types";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from "../features/auth/authActions";
+import { AppDispatch } from "../features/lib/store";
+import { useNavigate } from 'react-router';
 
 const Login = () => {
 
@@ -12,7 +14,18 @@ const Login = () => {
         user_remember: false
     }
 
+    const dispatch = useDispatch<AppDispatch>();
+    const { loading, userToken, error, success } = useSelector( (state: RootState) => state.auth );
+
     const [formValues, setFormValues] = useState( defaultFormValues );
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+        if (userToken) navigate('/')
+
+    }, [navigate, userToken])
 
     const handleInputUpdate = ( key: string, value: string | boolean ) => {
         setFormValues( { ...formValues, [key]: value })
@@ -21,6 +34,13 @@ const Login = () => {
     const handleFormSubmit = async ( event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         event.stopPropagation();
+
+        const userLoginData: LoginCreds = {
+            email: formValues.user_email,
+            password: formValues.user_password
+        }
+
+        dispatch( loginUser( userLoginData ) );
     }
 
     return(
@@ -38,6 +58,18 @@ const Login = () => {
 
                             <form className="w-100" onSubmit={( event ) => handleFormSubmit( event )}>
 
+                                { error &&
+                                    <div className="alert alert-danger rounded-0" role="alert">
+                                        Login error!!. Please check your email address and password.
+                                    </div>
+                                }
+
+                                { !loading && success &&
+                                    <div className="alert alert-success rounded-0" role="alert">
+                                        Successfully logged in.
+                                    </div>
+                                }
+
                                 <div className="mb-3">
                                     <label htmlFor="user_email" className="form-label">Email address</label>
                                     <input type="email" className="form-control" id="user_email" value={formValues.user_email} onChange={(e) => handleInputUpdate( 'user_email', e.target.value )} placeholder="Please enter your email here..." />
@@ -53,9 +85,14 @@ const Login = () => {
                                     </div>
                                 </div>
                                 <div className="mb-3 pt-3">
-                                    <button type="submit" className="btn btn-secondary w-100">
-                                        <span className="icon-login pe-2"></span>
-                                        <span>Login</span>
+                                    <button type="submit" className="btn btn-secondary w-100" disabled={loading}>
+                                        { (loading || success ) ? (
+                                            <span className="icon-circle-notch animate-spin"></span>
+                                        ) : (
+                                            <span className="icon-login"></span>
+                                        )}
+                                        
+                                        <span className="ps-2">{ success ? 'Redirecting...' : 'Login'}</span>
                                     </button>
                                 </div>
 

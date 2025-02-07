@@ -1,13 +1,18 @@
+import { combineReducers } from '@reduxjs/toolkit'
+const rootReducer = combineReducers({})
+export type RootState = ReturnType<typeof rootReducer>
+
 export interface UserInfo {
     email?: string
     exp?: number
     iat?: number
-    id?: number
+    id?: number | string
 }
 
 export interface LoginCreds {
     email: string
     password: string
+    remember?: boolean
 }
 
 export interface UserJWTToken {
