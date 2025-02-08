@@ -4,6 +4,7 @@ import Login from './templates/Login';
 import { Routes, Route } from 'react-router';
 import Dashboard from './templates/Dashboard';
 import NotFound from './templates/NotFound';
+import ProtectedRoute from './templates/ProtectedRoute';
 
 const App = () => {
 
@@ -12,7 +13,9 @@ const App = () => {
 			<MetaTags />
 
 			<Routes>
-				<Route index element={<Dashboard />} />
+				<Route element={<ProtectedRoute />}>
+					<Route index element={<Dashboard />} />
+				</Route>
 				<Route path="login" element={<Login />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>

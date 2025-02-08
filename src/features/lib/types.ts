@@ -36,6 +36,7 @@ export interface AuthState {
     userToken: string | null
     error: string | null | boolean
     success: boolean
+    tokenActive: boolean
 }
 
 export interface LoginFormValues {

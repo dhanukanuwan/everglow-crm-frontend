@@ -1,10 +1,16 @@
+import { useSelector } from 'react-redux';
+import { NavLink, Outlet } from 'react-router';
 import logo from "../images/logo.png";
+import { RootState } from "../features/lib/types";
 import LoginForm from "../partials/LoginForm";
 
-const Login = () => {
+const ProtectedRoute = () => {
 
-    return(
-        <div className="login-wrap min-vh-100 min-vw-100 d-flex align-items-center">
+    const { userToken, tokenActive } = useSelector((state: RootState) => state.auth);
+
+    if ( ! userToken && !tokenActive ) {
+        return(
+            <div className="login-wrap min-vh-100 min-vw-100 d-flex align-items-center">
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-12 col-lg-5">
@@ -25,8 +31,10 @@ const Login = () => {
             </div>
             
         </div>
-    )
+        )
+    }
 
+    return <Outlet />;
 }
 
-export default Login;
+export default ProtectedRoute;
