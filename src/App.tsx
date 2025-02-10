@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router';
 import Dashboard from './templates/Dashboard';
 import NotFound from './templates/NotFound';
 import ProtectedRoute from './templates/ProtectedRoute';
+import Customers from './templates/Customers';
 
 const App = () => {
 
@@ -14,7 +15,8 @@ const App = () => {
 
 			<Routes>
 				<Route element={<ProtectedRoute />}>
-					<Route index element={<Dashboard />} />
+					<Route index element={<Dashboard title="Dashboard" />} />
+					<Route path="customers" element={<Customers title="Customers" />} />
 				</Route>
 				<Route path="login" element={<Login />} />
 				<Route path="*" element={<NotFound />} />

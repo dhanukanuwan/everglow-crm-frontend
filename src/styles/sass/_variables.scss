@@ -4,6 +4,7 @@ $white: #ffffff;
 $red: #dc3545;
 $green: #198754;
 $gray_bg: #f1f4f9;
+$dark_bg: #252b36;
 
 
 $text_color_primary: #383838;
@@ -15,7 +16,8 @@ $theme-colors: (
   "white": $white,
   "danger": $red,
   "success": $green,
-  "gray-bg": $gray_bg
+  "gray-bg": $gray_bg,
+  "dark-bg": $dark_bg
 );
 
 $body-color: $text_color_primary;

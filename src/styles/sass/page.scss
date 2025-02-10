@@ -1,0 +1,19 @@
+.menu-items-wrap{
+    .menu-item{
+        &:hover,
+        &:focus{
+            background-color: rgba($white, .25);
+        }
+    }
+}
+
+.header-wrap {
+    .profile-dropdown {
+        li {
+            &:hover,
+            &:focus{
+                background-color: $gray_bg;
+            }
+        }
+    }
+}

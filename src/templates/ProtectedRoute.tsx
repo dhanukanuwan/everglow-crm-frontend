@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
-import { NavLink, Outlet } from 'react-router';
+import { Outlet } from 'react-router';
 import logo from "../images/logo.png";
 import { RootState } from "../features/lib/types";
 import LoginForm from "../partials/LoginForm";
+import Sidebar from '../partials/Sidebar';
 
 const ProtectedRoute = () => {
 
@@ -34,7 +35,12 @@ const ProtectedRoute = () => {
         )
     }
 
-    return <Outlet />;
+    return (
+        <div className="page-content-wrap d-flex flex-grow-1 overflow-x-hidden">
+            <Sidebar />
+            <Outlet />
+        </div>
+    )
 }
 
 export default ProtectedRoute;
