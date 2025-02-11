@@ -81,6 +81,7 @@ const authSlice = createSlice({
       		state.success = payload.success;
 			state.userToken = payload.data.jwt;
 			state.error = !payload.success;
+			state.tokenActive = true;
 
 			const decoded: UserInfo = jwtDecode( payload.data.jwt );
 

@@ -7,9 +7,9 @@ import Sidebar from '../partials/Sidebar';
 
 const ProtectedRoute = () => {
 
-    const { userToken, tokenActive } = useSelector((state: RootState) => state.auth);
+    const { tokenActive } = useSelector((state: RootState) => state.auth);
 
-    if ( ! userToken && !tokenActive ) {
+    if ( !tokenActive ) {
         return(
             <div className="login-wrap min-vh-100 min-vw-100 d-flex align-items-center">
             <div className="container">
