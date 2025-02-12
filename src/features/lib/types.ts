@@ -44,3 +44,29 @@ export interface LoginFormValues {
     user_password: string
     user_remember: boolean
 }
+
+export type ContactsListData = {
+    id: number;
+    name: string;
+    totalBlacklisted: number;
+    totalSubscribers: number;
+    uniqueSubscribers: number;
+    folderId: number
+}
+
+export type BrevoSuccessResponse = {
+    lists?: ContactsListData[];
+    count?: number;
+}
+
+export type BrevoErrorResponse = {
+    code: string;
+    message: string;
+}
+
+export interface ContactsState {
+    loading: boolean,
+	contactsLists: BrevoSuccessResponse,
+	error: string | null | boolean,
+	success: boolean,
+}

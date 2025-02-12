@@ -47,7 +47,7 @@ const SiteHeader = ({title}: {title: string}) => {
                                 </Link>
                             </li>
                             <li className="px-3" onClick={() => setShowProfileDropdown( false )}>
-                                <button type="button" className="btn btn-link text-decoration-none py-2 px-0 text-dark-text d-flex w-100" onClick={() => dispatch( logout() )}>
+                                <button type="button" className="btn btn-link text-decoration-none py-2 px-0 text-dark-text d-flex w-100" onClick={() => dispatch({type: "LOGOUT_RESET"})}>
                                     <span className="icon-logout"></span>
                                     <span className="ms-2">Log out</span>
                                 </button>

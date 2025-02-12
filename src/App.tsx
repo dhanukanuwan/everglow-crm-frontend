@@ -16,7 +16,7 @@ const App = () => {
 			<Routes>
 				<Route element={<ProtectedRoute />}>
 					<Route index element={<Dashboard title="Dashboard" />} />
-					<Route path="customers" element={<Customers title="Customers" />} />
+					<Route path="customers/:customersView?/:viewID?" element={<Customers title="Customers" />} />
 				</Route>
 				<Route path="login" element={<Login />} />
 				<Route path="*" element={<NotFound />} />

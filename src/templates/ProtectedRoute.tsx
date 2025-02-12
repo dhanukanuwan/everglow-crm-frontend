@@ -1,13 +1,23 @@
+import { useEffect } from "react";
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router';
 import logo from "../images/logo.png";
 import { RootState } from "../features/lib/types";
 import LoginForm from "../partials/LoginForm";
 import Sidebar from '../partials/Sidebar';
+import { useNavigate } from 'react-router';
 
 const ProtectedRoute = () => {
 
     const { tokenActive } = useSelector((state: RootState) => state.auth);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+        if (!tokenActive ) navigate('/login')
+
+    }, [navigate, tokenActive])
 
     if ( !tokenActive ) {
         return(
