@@ -54,6 +54,23 @@ export type ContactsListData = {
     folderId: number
 }
 
+export interface ListContacts {
+    email: string
+    id: number
+    emailBlacklisted: boolean
+    smsBlacklisted: boolean
+    createdAt: string
+    modifiedAt: string
+    listIds: number[]
+    listUnsubscribed: number[]
+    attributes: {[key: string]: string}
+}
+
+export interface ListContactsResponse {
+    contacts?: ListContacts[]
+    count?: number
+}
+
 export type BrevoSuccessResponse = {
     lists?: ContactsListData[];
     count?: number;
@@ -64,9 +81,18 @@ export type BrevoErrorResponse = {
     message: string;
 }
 
+export type ListContactsType = {
+    key?: string
+    id?: number
+    contacts?: ListContacts[],
+    count?: number
+}
+
 export interface ContactsState {
-    loading: boolean,
-	contactsLists: BrevoSuccessResponse,
-	error: string | null | boolean,
-	success: boolean,
+    loading: boolean
+	contactsLists: BrevoSuccessResponse
+    listContacts: ListContactsType[]
+    listContactsError: string | null | boolean
+	error: string | null | boolean
+	success: boolean
 }

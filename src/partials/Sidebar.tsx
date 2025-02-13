@@ -25,7 +25,7 @@ const Sidebar = () => {
                             </Link>
                             
                         </li>
-                        <li className={`menu-item mb-1 ${ pathname === '/customers' ? 'bg-white bg-opacity-25' : ''}`}>
+                        <li className={`menu-item mb-1 ${ pathname.includes('/customers') ? 'bg-white bg-opacity-25' : ''}`}>
                             <Link to={'/customers'} className="d-flex text-white text-decoration-none py-2 px-3">
                                 <span className="icon-users"></span>
                                 <span className="ms-2">Customers</span>
